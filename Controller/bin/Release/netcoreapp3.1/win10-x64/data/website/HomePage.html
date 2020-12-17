@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Led Controller</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+    </header>
+    <main>
+        <button type="button" class="btn btn-primary" onclick="ScanDevices()">scan for devices</button>
+        <button type="button" class="btn btn-primary" onclick="ReloadDevices()">reload Animations</button>
+
+        <ul class="list-group" id="AnimationList">
+        </ul>
+    </main>
+
+
+    <script>
+        loadAnimations();
+        async function loadAnimations() {
+            let response = await fetch("/api?method=getAnimations");
+
+            if (response.ok) { // if HTTP-status is 200-299
+                // get the response body (the method explained below)
+                let animations = await response.json();
+                console.log(animations);
+
+                var currentAnimation = await CurrentAnimation();
+                var CurrentId;
+                if (currentAnimation != null && urrentAnimation.id != undefined)
+                    CurrentId = currentAnimation.id;
+                else
+                    CurrentId = -1;
+
+                var ListElement = document.getElementById("AnimationList");
+                ListElement.innerHTML = "";
+                animations.forEach(element => {
+                    ListElement.innerHTML += "<a href=\"#\" onclick=\"SetAnimation(" + element.id + ")\"><li class=\"list-group-item" + (CurrentId == element.id ? " active" : "") + "\">" + element.name + "</li></a>";
+                });
+            } else {
+                alert("HTTP-Error: " + response.status);
+            }
+        }
+
+        async function CurrentAnimation() {
+            let response = await fetch("/api?method=getCurrentAnimation");
+
+            if (response.ok) { // if HTTP-status is 200-299
+                // get the response body (the method explained below)
+                let json = await response.json();
+                return json;
+                console.log(json);
+
+            } else {
+                alert("HTTP-Error: " + response.status);
+            }
+        }
+
+        async function ScanDevices() {
+            let response = await fetch("/api?method=scanDevices&ip=" + location.hostname);
+
+            if (response.ok) { // if HTTP-status is 200-299
+                // get the response body (the method explained below)
+                let json = await response.json();
+                console.log(json);
+            } else {
+                alert("HTTP-Error: " + response.status);
+            }
+        }
+
+
+        async function ReloadDevices() {
+            let response = await fetch("/api?method=scanAnimations");
+
+            if (response.ok) { // if HTTP-status is 200-299
+                // get the response body (the method explained below)
+                let json = await response.json();
+                console.log(json);
+            } else {
+                alert("HTTP-Error: " + response.status);
+            }
+            await loadAnimations();
+        }
+
+        async function SetAnimation(id) {
+            let response = await fetch("/api?method=setAnimation&animation=" + id);
+
+            if (response.ok) { // if HTTP-status is 200-299
+                // get the response body (the method explained below)
+                let json = await response.json();
+                console.log(json);
+            } else {
+                alert("HTTP-Error: " + response.status);
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+</html>

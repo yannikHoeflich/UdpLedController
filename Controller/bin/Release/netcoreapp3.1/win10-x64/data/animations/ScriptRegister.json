@@ -1,0 +1,90 @@
+﻿[
+  {
+
+    "scriptPath": "scripts/default.js",
+    "name": "off",
+    "id": 0,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/blue.js",
+    "name": "blue",
+    "id": 1,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/green.js",
+    "name": "green",
+    "id": 2,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/red.js",
+    "name": "red",
+    "id": 3,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/purple.js",
+    "name": "purple",
+    "id": 4,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/yellow.js",
+    "name": "yellow",
+    "id": 5,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/cyan.js",
+    "name": "cyan",
+    "id": 6,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/white.js",
+    "name": "white",
+    "id": 7,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/LowWhite.js",
+    "name": "dimmed white",
+    "id": 8,
+    "isAnimated": false,
+    "delay": 0
+  },
+  {
+
+    "scriptPath": "scripts/spectrum.js",
+    "name": "rainbow spectrum",
+    "id": 9,
+    "isAnimated": true,
+    "delay": 30
+  },
+  {
+
+    "scriptPath": "scripts/wave.js",
+    "name": "rainbow wave",
+    "id": 10,
+    "isAnimated": true,
+    "delay": 30
+  }
+]

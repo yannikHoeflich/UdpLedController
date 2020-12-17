@@ -1,0 +1,16 @@
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\RaspServer.exe
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\RaspServer.deps.json
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\RaspServer.runtimeconfig.json
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\RaspServer.runtimeconfig.dev.json
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\RaspServer.dll
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\RaspServer.pdb
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.csprojAssemblyReference.cache
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.AssemblyInfoInputs.cache
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.AssemblyInfo.cs
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.dll
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.pdb
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.genruntimeconfig.cache
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.csproj.CopyComplete
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\obj\Debug\netcoreapp3.1\RaspServer.csproj.CoreCompileInputs.cache
+C:\Users\ygidy\source\repos\LedController_V2\RaspServer\bin\Debug\netcoreapp3.1\Jint.dll

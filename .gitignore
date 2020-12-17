@@ -1,0 +1,10 @@
+./Animations
+./Debug
+./Hardware SDK
+./packages
+./Release
+./.gitignore
+./Led Controller/Led Controller/bin
+./Led Controller/Led Controller.Android/bin
+./Led Controller/Led Controller.iOS/bin
+./Controller/bin

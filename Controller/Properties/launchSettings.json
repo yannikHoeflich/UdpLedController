@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Controller": {
+      "commandName": "Project",
+      "commandLineArgs": "i all /s"
+    }
+  }
+}

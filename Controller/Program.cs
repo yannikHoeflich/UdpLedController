@@ -231,20 +231,20 @@ namespace Controller {
             var newData = new Dictionary<string, dynamic>();
 
 
-            // get input for all values that are "%_input%"
-            foreach(var d in animation.Data) {
-                if(d.Value == "%_input%") {
-                    Console.Write($"value for {d.Key}: ");
-                    dynamic value = Console.ReadLine();
-                    if(float.TryParse(value, out float newValue)) {
-                        value = newValue;
-                    }
-                    animation.Data[d.Key] = value;
-                }
-            }
-
             // object name has to begin with "_type_" and then the object name like "_type_color" to give the "color" object the right type
             if(animation.Data != null) {
+                // get input for all values that are "%_input%"
+                foreach(var d in animation.Data) {
+                    if(d.Value is string && d.Value == "%_input%") {
+                        Console.Write($"value for {d.Key}: ");
+                        dynamic value = Console.ReadLine();
+                        if(float.TryParse(value, out float newValue)) {
+                            value = newValue;
+                        }
+                        animation.Data[d.Key] = value;
+                    }
+                }
+
                 foreach(var d in animation.Data) {
                     if(d.Key.StartsWith("_type_")) {
                         string argName = d.Key.TrimStart("_type_".ToCharArray());
@@ -269,6 +269,8 @@ namespace Controller {
 
                 //replace all %key% with keyname in data values
                 foreach(var d in animation.Data) {
+                    if(!(d.Value is string))
+                        continue;
                     while(true) {
                         var match = VariableNameFinder.Match(d.Value);
                         if(!match.Success)

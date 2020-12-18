@@ -6,17 +6,17 @@
 ./.gitignore
 
 ./Led Controller/Led Controller/bin
-./Led Controller/Led Controller/obj/Debug
-./Led Controller/Led Controller/obj/Release
+#./Led Controller/Led Controller/obj/Debug
+#./Led Controller/Led Controller/obj/Release
 
 ./Led Controller/Led Controller.Android/bin
-./Led Controller/Led Controller.Android/obj/Debug
-./Led Controller/Led Controller.Android/obj/Release
+#./Led Controller/Led Controller.Android/obj/Debug
+#./Led Controller/Led Controller.Android/obj/Release
 
 ./Led Controller/Led Controller.iOS/bin
-./Led Controller/Led Controller.iOS/obj/Debug
-./Led Controller/Led Controller.iOS/obj/Release
+#./Led Controller/Led Controller.iOS/obj/Debug
+#./Led Controller/Led Controller.iOS/obj/Release
 
 ./Controller/bin
-./Controller/obj/Debug
-./Controller/obj/Release
+#./Controller/obj/Debug
+#./Controller/obj/Release

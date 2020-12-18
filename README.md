@@ -1,8 +1,8 @@
-# UdpLedController
+# Udp Led Controller
 This is a led controller (mainly for led strips) which controlles the leds over udp and provides an api with a basic website to switch animations / colors
 
 # Getting started
-## micro controller
+## Micro Controller
 go /MicroController directory in the repository and check if your controller with the correct led protocol has an existing script
 
 ### a script already exists
@@ -28,7 +28,7 @@ you can create a can make a merge request so I can add the script to the reposit
 ## Http Controller
 
 ### download
-download the newest version for your os in releases
+download the newest version for your os in [releases](https://github.com/yannikHoeflich/UdpLedController/tags)
 
 ### or compile it yourself
 1. download [.NET core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
@@ -54,86 +54,7 @@ run the program with higher privileges (windows: admin, linux: root)
 3. if not all animations are visible click on "reload Animations"
 4. click on any animation to run that animation
 
-
-# API Documentation
-
-## request
-endpoint: `/api?method=[method]`
-### Get Animations
-gets an array of all animations
-method:  
-`getAnimations`  
-
-parameters:
-
-returns:  
-- `Animation` `array`
-
-### Get Devices
-gets an array of all devices
-method:  
-`getDevices`  
-
-parameters:
-
-returns:  
-- `Device` `array`
-
-### Set Animation
-sets an animation, which is running after the call
-method:  
-`setAnimation`  
-
-parameters:
-- `ulong id` => index of the animation in the array
-
-returns:  
-- `boolean` => if animation set was succesful
-
-### Get current Animation
-gets the current running animation
-method:  
-`getCurrentAnimation`  
-
-returns:  
-- `Animation`
-  
-### scan Devices
-scan for devices in the local network
-method:  
-`scanDevices`  
-
-returns:  
-- `Device` `array`
-
-### scan Devices
-scan for devices in the local network
-method:  
-`scanDevices`  
-
-parameters:
-- (`string ip` => an example ip in the network only nessesary of the controller is in multiple networks  )
-
-returns:  
-- `Device` `array`
-
-### scan Animations
-reloads all animations from animation file
-method:  
-`scanAnimations`  
-
-returns:  
-- `boolean` => if reload set was succesful
- 
-
-## object types
-
-### Animation
-Fields
-- `string Name` => name of the animation
-- `bool IsAnimated` => boolean if animation is animated or not
-
-### Device
-Fields
-- `string Ip` => local ip adress of device
-- `Color` `array` `Leds` => current led collors
+# Documentations
+[api](/Documentations/api_documentation.md)  
+[animation scripts](/Documentations/animation_script_documentation.md)  
+[animation metadata json](/Documentations/animation_metadata_json.md)

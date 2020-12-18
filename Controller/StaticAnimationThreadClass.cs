@@ -40,15 +40,16 @@ namespace Controller {
                     .SetValue ("Time", time)
                     .SetValue ("sleep", new Action<int>(ms => Sleep(ms, () => AnimationThreads.Count > 1)))
                     .SetValue ("SetColor", new Action<int, Color>(SetColor))
+                    .SetValue ("Update", new Action(Update))
+                    .SetValue ("Log", new Action<object>(o => Program.Log("Javascript engine", o.ToString(), ConsoleColor.DarkYellow)))
                     .SetValue ("Random", new Func<int, int, int>(r.Next))
                     .SetValue ("Round", new Func<double, int>(Round))
-                    .SetValue ("GetArg", new Func<string, dynamic>((key) => GetArg(animation, key)))
-                    .SetValue ("Log", new Action<object>(o => Program.Log("Javascript engine", o.ToString(), ConsoleColor.DarkYellow)));
+                    .SetValue ("GetArg", new Func<string, dynamic>((key) => GetArg(animation, key)));
 
                     engine.SetValue("Color", TypeReference.CreateTypeReference(engine, typeof(Color)));
                     engine.SetValue("RunExternal", new Action<string>((url) => RunExternal( engine, url)));
 
-                    // wait until other animations are exited, if more that 1 is waiting quit current thread to prevent to many threads waiting
+                    // wait until other animations are exited, if more that 1 is waiting quit current thread to prevent too many threads waiting
                     while(AnimationThreads.Count > 1) {
                         Thread.Sleep(100);
                         if(AnimationThreads.Count > 2) {
@@ -88,12 +89,8 @@ namespace Controller {
                     do {
                         time.Update();
                         engine.Execute(script);
-                        // only send data to devices if the leds have changed since exucution
-                        if(LastFrame == null || !LastFrame.SequenceEqual(GetLeds())) {
-                            foreach(Device d in Devices)
-                                d.Set();
-                            LastFrame = GetLeds().ToArray();
-                        }
+                        // update and wait the delay
+                        Update();
                         Sleep(animation.Delay, () => AnimationThreads.Count > 1); // stop sleep if other thread is waiting
                     } while(AnimationThreads.Count <= 1 && animation.IsAnimated);
                 } catch(Exception e) {
@@ -103,6 +100,15 @@ namespace Controller {
             });
             t.Start();
             AnimationThreads.Add(t);
+        }
+
+        // only send data to devices if the leds have changed since exucution
+        private static void Update() {
+            if(LastFrame == null || !LastFrame.SequenceEqual(GetLeds())) {
+                foreach(Device d in Devices)
+                    d.Set();
+                LastFrame = GetLeds().ToArray();
+            }
         }
 
         //runs an external JavaScript file from other file

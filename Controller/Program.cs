@@ -224,13 +224,28 @@ namespace Controller {
             }
         }
 
+
+        static readonly Regex VariableNameFinder = new Regex(@"%.+%");
         //add new animation to array (format json / convert object to right types)
         public static void AddAnimation( Animation animation ) {
             var newData = new Dictionary<string, dynamic>();
 
+
+            // get input for all values that are "%_input%"
+            foreach(var d in animation.Data) {
+                if(d.Value == "%_input%") {
+                    Console.Write($"value for {d.Key}: ");
+                    dynamic value = Console.ReadLine();
+                    if(float.TryParse(value, out float newValue)) {
+                        value = newValue;
+                    }
+                    animation.Data[d.Key] = value;
+                }
+            }
+
+            // object name has to begin with "_type_" and then the object name like "_type_color" to give the "color" object the right type
             if(animation.Data != null) {
                 foreach(var d in animation.Data) {
-                    // object name has to begin with "_type_" and then the object name like "_type_color" to give the "color" object the right type
                     if(d.Key.StartsWith("_type_")) {
                         string argName = d.Key.TrimStart("_type_".ToCharArray());
                         Type type = ByName(d.Value);
@@ -242,6 +257,8 @@ namespace Controller {
                         newData.Add(data.Key, RunMethodWithType(type, value, "ToObject"));
                     }
                 }
+
+
                 foreach(var d in animation.Data) {
                     if(!d.Key.StartsWith("_") && !newData.ContainsKey(d.Key)) {
                         newData.Add(d.Key, d.Value);
@@ -249,6 +266,32 @@ namespace Controller {
                 }
 
                 animation.Data = newData;
+
+                //replace all %key% with keyname in data values
+                foreach(var d in animation.Data) {
+                    while(true) {
+                        var match = VariableNameFinder.Match(d.Value);
+                        if(!match.Success)
+                            break;
+                        string valueName = match.Value.Trim('%');
+                        if(animation.Data.ContainsKey(valueName))
+                            break;
+                        animation.Data[d.Key] = animation.Name.Remove(match.Index, match.Length);
+                        animation.Data[d.Key].Insert(match.Index, animation.Data[valueName]);
+                    }
+                }
+
+                //replace all %key% with keyname in animation name
+                while(true) {
+                    var match = VariableNameFinder.Match(animation.Name);
+                    if(!match.Success)
+                        break;
+                    string valueName = match.Value.Trim('%');
+                    if(animation.Data.ContainsKey(valueName))
+                        break;
+                    animation.Name = animation.Name.Remove(match.Index, match.Length);
+                    animation.Name.Insert(match.Index, animation.Data[valueName]);
+                }
             }
             Animations.Add(animation);
         }

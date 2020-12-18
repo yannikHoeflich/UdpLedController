@@ -16,7 +16,7 @@ namespace Controller.AnimationDownloader {
             Data = this.Data,
             Delay = this.Delay,
             IsAnimated = this.IsAnimated,
-            Name = this.DownloadUrl.StartsWith("https://raw.githubusercontent.com/yannikHoeflich/LedAnimations/master/") ? this.Name : $"{this.Author}.{this.Name}",
+            Name = this.DownloadUrl.StartsWith("https://raw.githubusercontent.com/yannikHoeflich/LedAnimations/master/") || string.IsNullOrEmpty(this.Name) ? this.Name : $"{this.Author}.{this.Name}",
             ScriptPath = scriptPath,
             DownloadUrl = this.DownloadUrl,
             Version = this.Version,

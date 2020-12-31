@@ -11,7 +11,7 @@ using Xamarin.Forms.Internals;
 namespace Led_Controller {
     public partial class MainPage : ContentPage {
         private readonly HttpClient client;
-        const string host = "5.83.163.142:10002";
+        const string host = "";
         List<Animation>  Animations;
         ulong  CurrentAnimation;
 

@@ -12,6 +12,8 @@ namespace Controller {
         public bool IsAnimated { get; set; }
 
         public ApiAnimation( Animation animation ) {
+            if(animation == null)
+                return;
             this.Name = animation.Name;
             this.IsAnimated = animation.IsAnimated;
         }

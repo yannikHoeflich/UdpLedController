@@ -155,35 +155,16 @@
     "delay": 30
   },
   {
-
     "scriptPath": "scripts/AlarmClock.js",
-    "name": "alarm clock 6:30",
+    "name": "clock 17:30",
     "isAnimated": true,
     "delay": 5000,
     "data": {
-      "hour": 6,
-      "minute": 30
-    }
-  },
-  {
-
-    "scriptPath": "scripts/AlarmClock.js",
-    "name": "alarm clock 7:30",
-    "isAnimated": true,
-    "delay": 5000,
-    "data": {
-      "hour": 7,
-      "minute": 30
-    }
-  },
-  {
-    "scriptPath": "scripts/AlarmClock.js",
-    "name": "alarm clock 8:30",
-    "isAnimated": true,
-    "delay": 5000,
-    "data": {
-      "hour": 8,
-      "minute": 30
+      "hour": 18,
+      "minute": 50,
+      "fade_in_minutes": 60,
+      "_type_color": "System.Drawing.Color",
+      "color": "255, 100, 20"
     }
   },
   {

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -42,8 +42,8 @@
     <None Update="data\animations\scripts\default.js">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="data\website\HomePage.html">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    <None Update="data\website\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

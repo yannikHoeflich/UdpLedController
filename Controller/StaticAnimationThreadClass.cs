@@ -17,6 +17,20 @@ namespace Controller {
         public static Device[] Devices;
         static Color[] LastFrame = null;
 
+        private static double dimming = 1;
+        public static double Dimming {
+            get => dimming; set {
+                if(value > 1)
+                    dimming = 1;
+                else if(value < 0)
+                    dimming = 0;
+                else
+                    dimming = value;
+
+                if(AnimationThreads.Count == 0)
+                    Update(true);
+            }
+        }
         public static int LedCount => Devices.Sum(x => x.Leds.Length);
 
         // method to start new animation
@@ -40,7 +54,7 @@ namespace Controller {
                     .SetValue ("Time", time)
                     .SetValue ("sleep", new Action<int>(ms => Sleep(ms, () => AnimationThreads.Count > 1)))
                     .SetValue ("SetColor", new Action<int, Color>(SetColor))
-                    .SetValue ("Update", new Action(Update))
+                    .SetValue ("Update", new Action(() => Update()))
                     .SetValue ("Log", new Action<object>(o => Program.Log("Javascript engine", o.ToString(), ConsoleColor.DarkYellow)))
                     .SetValue ("Random", new Func<int, int, int>(r.Next))
                     .SetValue ("Round", new Func<double, int>(Round))
@@ -103,10 +117,10 @@ namespace Controller {
         }
 
         // only send data to devices if the leds have changed since exucution
-        private static void Update() {
-            if(LastFrame == null || !LastFrame.SequenceEqual(GetLeds())) {
+        private static void Update( bool alwaysUpdate = false ) {
+            if(alwaysUpdate || LastFrame == null || !LastFrame.SequenceEqual(GetLeds())) {
                 foreach(Device d in Devices)
-                    d.Set();
+                    d.Set(Dimming);
                 LastFrame = GetLeds().ToArray();
             }
         }

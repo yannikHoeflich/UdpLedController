@@ -23,6 +23,7 @@ namespace Controller.AnimationDownloader {
 
                 //download data obout the animation (where to download, name, delay, etc.)
                 Program.Log("install", "[GET] manifest " + url, ConsoleColor.White);
+
                 {
                     var response = client.GetAsync(url).GetAwaiter().GetResult();
 
@@ -82,7 +83,7 @@ namespace Controller.AnimationDownloader {
                 }
                 File.WriteAllText("data/animations/ScriptRegister.json", JsonConvert.SerializeObject(Program.Animations));
             } catch(Exception e) {
-                Program.Log("install", "[error]" + e.Message, ConsoleColor.Red);
+                Program.Log("install", "[error]" + e, ConsoleColor.Red);
             }
         }
     }

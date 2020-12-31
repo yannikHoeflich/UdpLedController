@@ -14,15 +14,15 @@ namespace Controller {
         }
 
         // send an array with colors to the device to set the colors their
-        public void Set() {
+        public void Set( double dimFactor = 1 ) {
             var udpClient = new UdpClient( );
 
             byte[] sendBytes = new byte[(this.Leds.Length * 3) + 1];
             sendBytes[0] = 255;
             for(int i = 0; i < this.Leds.Length; i++) {
-                sendBytes[(i * 3) + 1] = this.Leds[i].R;
-                sendBytes[(i * 3) + 2] = this.Leds[i].G;
-                sendBytes[(i * 3) + 3] = this.Leds[i].B;
+                sendBytes[(i * 3) + 1] = (byte) (this.Leds[i].R * dimFactor);
+                sendBytes[(i * 3) + 2] = (byte) (this.Leds[i].G * dimFactor);
+                sendBytes[(i * 3) + 3] = (byte) (this.Leds[i].B * dimFactor);
             }
             udpClient.Send(sendBytes, sendBytes.Length, this.Ip, 4210);
             udpClient.Close();

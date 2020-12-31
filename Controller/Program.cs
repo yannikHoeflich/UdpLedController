@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -206,6 +207,15 @@ namespace Controller {
                     } catch(Exception e) { Program.Log("API", "[error]" + e.Message, ConsoleColor.Red); }
                     responseObject = true;
                     break;
+
+                    case "getDimmng":
+                    responseObject = StaticAnimationThreadClass.Dimming;
+                    break;
+
+                    case "setDimmng":
+                    Program.Log("debug", data["factor"], ConsoleColor.White);
+                    StaticAnimationThreadClass.Dimming = double.Parse(data["factor"], CultureInfo.GetCultureInfo("en-US"));
+                    break;
                 }
             } catch(KeyNotFoundException) { }
             return new OutputData() { buffer = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(responseObject)), ContentType = ContentType.application_json };
@@ -254,6 +264,7 @@ namespace Controller {
                         if(!(value is JToken)) { // checks if object is already converted
                             value = value.GetType().IsValueType || value is string ? (dynamic) new JValue(value) : (dynamic) new JObject(value); // converts false converted object back to Json-values or -objects
                         }
+                        newData.Add(d.Key, type.ToString());
                         newData.Add(data.Key, RunMethodWithType(type, value, "ToObject"));
                     }
                 }

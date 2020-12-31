@@ -42,12 +42,9 @@ namespace Led_Controller {
 
         public void DoClick() => Click?.Invoke(this, null);
 
-        public event EventHandler Clicked
-    {
-            add
-        {
-                lock (this)
-            {
+        public event EventHandler Clicked{
+            add{
+                lock (this){
                     Click += value;
 
                     var g = new TapGestureRecognizer();
@@ -57,10 +54,8 @@ namespace Led_Controller {
                     this.GestureRecognizers.Add(g);
                 }
             }
-            remove
-        {
-                lock (this)
-            {
+            remove{
+                lock (this){
                     Click -= value;
 
                     this.GestureRecognizers.Clear();

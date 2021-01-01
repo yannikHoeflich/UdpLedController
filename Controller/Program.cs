@@ -79,6 +79,7 @@ namespace Controller {
 
         //main method
         void Start() {
+            ScanAnimations();
             new Thread(ConsoleInputThread).Start();
 
             //init webpages for Api

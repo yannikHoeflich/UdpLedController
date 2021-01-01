@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 using Newtonsoft.Json;
 
@@ -36,9 +35,7 @@ namespace Controller {
                     animation.Name == this.Name &&
                     animation.IsAnimated == this.IsAnimated &&
                     animation.Delay == this.Delay &&
-                    animation.DownloadUrl == this.DownloadUrl &&
-                    (animation.Data == this.Data ||
-                    Enumerable.SequenceEqual(animation.Data, this.Data));
+                    animation.DownloadUrl == this.DownloadUrl;
         }
         public override int GetHashCode() => this.Name.GetHashCode() + this.Data.GetHashCode();
 

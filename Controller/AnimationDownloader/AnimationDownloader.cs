@@ -70,6 +70,7 @@ namespace Controller.AnimationDownloader {
 
                 var animation = manifest.ToAnimation("scripts/" + id + ".js"); // converts the downloaded data to a valid animation object
                 //if animation contains an animation (not only animation collection)  add to animations and save new array
+
                 if(animation != null && Program.Animations.Find(x => x.Equals(animation)) == null) {
                     Program.AddAnimation(animation);
                     Program.Log("install", "added " + animation.Name, ConsoleColor.Green);
@@ -79,7 +80,7 @@ namespace Controller.AnimationDownloader {
                     else if(string.IsNullOrEmpty(manifest.Name))
                         Program.Log("install", $"[info] from {manifest.DownloadUrl} is download only", ConsoleColor.White);
                     else
-                        Program.Log("install", "[info] animation '" + manifest.Name + "' does already exists", ConsoleColor.White);
+                        Program.Log("install", $"[info] animation '{manifest.Name}' does already exists", ConsoleColor.White);
                 }
                 File.WriteAllText("data/animations/ScriptRegister.json", JsonConvert.SerializeObject(Program.Animations));
             } catch(Exception e) {
